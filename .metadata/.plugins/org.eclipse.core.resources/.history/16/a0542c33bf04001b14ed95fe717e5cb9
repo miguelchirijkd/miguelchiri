@@ -1,0 +1,8 @@
+package com.cervecerialan.encuestacerveceria;
+
+import org.apache.catalina.User;
+
+public class RestTemplate {
+	
+	
+}

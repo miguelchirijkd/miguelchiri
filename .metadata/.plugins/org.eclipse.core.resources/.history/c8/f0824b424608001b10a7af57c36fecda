@@ -1,0 +1,57 @@
+package tests;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import pages.PageCatalogo;
+import pages.PageHome;
+
+public class TestFravega {
+	private String url = "https://www.fravega.com/";
+	static WebDriver driver;
+
+	@Before
+	public void setup() {
+		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("start-maximized");
+		driver = new ChromeDriver(options);
+	}
+
+	public static WebDriver getD() {
+		return driver;
+	}
+
+	@Test
+	public void login() throws Exception {
+		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+		driver.get(url);
+		PageHome pageHome = new PageHome();
+		PageCatalogo pageCatalogo = new PageCatalogo();
+
+		try {
+
+			pageHome.cerrarPopUpCodigoPostal();
+			pageHome.ingresarProductoABuscar("heladeras");
+			pageHome.clickBtnBuscar();
+			pageCatalogo.PageCatalogoAbierta();
+
+		} catch (Exception e) {
+			System.out.println(e);
+			throw new Exception(e);
+		}
+//		pageCatalogo.PageCatalogoAbierta("Heladeras");
+	}
+	
+	@After
+	public void finTest() {
+		driver.close();
+	}
+
+}

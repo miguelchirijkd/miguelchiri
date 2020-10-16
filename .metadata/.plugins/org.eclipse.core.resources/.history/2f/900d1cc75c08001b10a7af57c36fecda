@@ -1,0 +1,70 @@
+package com.PageObject.pom;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+public class PantallaFiltro {
+	
+	WebDriver driver;
+	
+	 //Localizador que indica que estoy en la tercera pantalla
+    By locaTerceraPantalla = By.xpath("//ul/li[2]//h3[contains(text(),'Marca')]");
+    
+    //Localizador que hace clic en "Ver todas"
+    By localinkVerTodas = By.linkText("Ver todas");
+    
+    //Localizador que hace clic en el check de Samsung
+    By localcheckSamsung = By.xpath("//div[@class=\"ant-modal-body\"]//label[@for='filterItemsamsung']");
+    
+    //Localizador de cantidad de heladeras
+    By localCantHeladeras = By.xpath("//ul[@name=\'itemsGrid\']//li['+ i +'+]");
+        
+    //Localizador que hace clic en el botón "Aplicar"
+    By localBtnAplicar = By.xpath("//div[@class='ant-modal-body']//button[@id='apply']");
+
+    public PantallaFiltro (WebDriver driver) {
+		this.driver = driver;
+	}
+    
+    public void PageFiltro() throws Exception {
+  		if (driver.findElement(locaTerceraPantalla).getText().equals("Marca")) {
+  			System.out.println("Se ingreso a la pagina Heladeras correctamente");
+  		} else {
+  			System.out.println("No se pudo ingresar a la pagina Heladeras");
+  		}
+  	}
+    
+    //metodo que hace clic en ver todas
+  	public void ClickVerTodas () throws Exception {
+  		driver.findElement(localinkVerTodas).click();
+  	}
+      
+  	 //metodo que hace clic en ver todas
+  	public void ClickCheckSamsung () throws Exception {
+  		driver.findElement(localcheckSamsung).click();
+  	}   
+  	
+  //metodo que hace clic en ver todas
+  	public void ClickBtnAplicar () throws Exception {
+  		driver.findElement(localBtnAplicar).click();
+  	}   
+  	
+  	public List<WebElement> verificarcantidaddeheladeras(){
+		List<WebElement> resulCantSamsung = new ArrayList<WebElement>();
+		
+		for (int i = 1;i < 20; i++) {
+			try {
+				WebElement heladera = driver.findElement(localCantHeladeras);								
+				resulCantSamsung.add(heladera);				
+			}catch (Exception e){
+				break;
+			}			
+		}
+		return resulCantSamsung;
+		}
+}
+

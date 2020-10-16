@@ -1,0 +1,140 @@
+package com.challengefravega;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class TestBase {
+
+	private WebDriver driver;
+	//Localizador que ingresa la palabra "Heladera" en el input (se usa un cssSelector porque tiene un combo)
+    By locaIngresoPalabra = By.cssSelector("input[class='InputBar__SearchInput-t6v2m1-1 iJaFAt']");
+	
+    //Localizador que hace click en la lupita(se usa un xpath porque no tiene id probar con un searchbox)
+    By locaBtnBusqueda = By.xpath("//button[@class='InputBar__SearchButton-t6v2m1-2 jRChuZ']");
+    
+    //Localizador que indica que estoy en la segunda pantalla
+    By locaSegundaPantalla = By.xpath("//h1[@name='categoryTitle' and @class='TitleCategory__TitleCategoryStyled-sc-54msxn-0 fvCOsJ']");
+	
+    //Localizador que hace clic en la izquierda Heladeras(79)
+    By locaClickHeladeras = By.xpath("//ul/li[1]//h4[contains(text(),'Heladeras')]");
+    
+    //Localizador que indica que estoy en la tercera pantalla
+    By locaTerceraPantalla = By.xpath("//ul/li[2]//h3[contains(text(),'Marca')]");
+    
+    //Localizador que hace clic en "Ver todas"
+    By localinkVerTodas = By.linkText("Ver todas");
+    
+    //Localizador que hace clic en el check de Samsung
+    By localcheckSamsung = By.xpath("//div[@class=\"ant-modal-body\"]//label[@for='filterItemsamsung']");
+    
+    //Localizador de cantidad de heladeras
+    By localCantHeladeras = By.xpath("//ul[@name=\'itemsGrid\']//li['+ i +'+]");
+        
+    //Localizador que hace clic en el botón "Aplicar"
+    By localBtnAplicar = By.xpath("//div[@class='ant-modal-body']//button[@id='apply']");  
+    
+    @Before
+	public void ingresoaPagina() {
+		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.fravega.com/");
+	}
+	
+	@Test
+	public void testFravegaPagina(){
+	//driver.close();
+					
+	//*********************************************************
+	//***         Punto 3 buscar "Heladera"                 ***
+	//*********************************************************
+				
+	//Busca la palabra Heladera en el inputText(envia el texto Heladera)
+		driver.findElement(locaIngresoPalabra).sendKeys("Heladera");
+				
+	//Avanza a la otra pantalla haciendo clic en la lupita
+		driver.findElement(locaBtnBusqueda).click();
+	
+	//tiempo_de_espera
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);	
+	
+					
+	//*****************************************************************************************
+	//***         Punto 4 filtra por "Heladera" seccion izquierda de la página              ***
+	//*****************************************************************************************
+		
+	//Compara si existe el valor de la segunda pantalla, si existe entra en el if
+		if (driver.findElement(locaSegundaPantalla).isDisplayed()){
+			
+			//va hacer clic en la opcion que se encuentra en la izquierda "Heladeras(79)"
+			driver.findElement(locaClickHeladeras).click();
+		}
+		else {
+			System.out.print("Página no encontrada clic en Heladeras");
+		}		
+	
+	
+	
+	//****************************************************************************************
+	//***         Punto 5 filtra por "Samsung" seccion izquierda de la página              ***
+	//****************************************************************************************
+	
+	//Compara si existe el valor de la segunda pantalla, si existe entra en el if
+		if (driver.findElement(locaTerceraPantalla).isDisplayed()){
+				   
+			//va hacer clic en la opcion que se encuentra en la izquierda "Ver todas"
+			driver.findElement(localinkVerTodas).click();
+			
+			//va hacer clic en el check de "Samsung"	
+			driver.findElement(localcheckSamsung).click();
+			
+			//va hacer clic en el botón "Aplicar"
+			driver.findElement(localBtnAplicar).click();
+						
+		}
+		else {
+			System.out.print("Página de Selección de Samsung no encontrada");
+		}
+		
+		//**************************************************************
+		//***         Punto 6 Assert grilla de resultados "Heladera" ***
+		//**************************************************************
+		
+		}
+	@Test
+	public List<WebElement> verificarcantidaddeheladeras(){
+		List<WebElement> resulCantSamsung = new ArrayList<WebElement>();
+		
+		for (int i = 1;i < 20; i++) {
+			try {
+				WebElement heladera = driver.findElement(localCantHeladeras);								
+				resulCantSamsung.add(heladera);				
+			}catch (Exception e){
+				break;
+			}			
+		}
+		return resulCantSamsung;
+		}
+		
+
+	
+	
+	@After
+	public void tearDown(){
+	//Cierra el navegador
+	//driver.close();
+	
+	}
+	
+}

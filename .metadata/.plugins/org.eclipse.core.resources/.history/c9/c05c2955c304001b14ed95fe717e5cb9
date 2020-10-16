@@ -1,0 +1,68 @@
+package com.cervecerialan.encuestacerveceria;
+
+//import org.apache.catalina.User;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.web.client.RestTemplate;
+
+public class Cerveceria {
+	
+	//"id": 2,
+    //"name": "Avondale Brewing Co",
+    //"brewery_type": "micro",
+    //"street": "201 41st St S",
+    //"city": "Birmingham",
+    //"state": "Alabama",
+    //"postal_code": "35222-1932",
+    //"country": "United States",
+    //"longitude": "-86.774322",
+    //"latitude": "33.524521",
+    //"phone": "2057775456",
+    //"website_url": "http://www.avondalebrewing.com",
+    //"updated_at": "2018-08-23T23:19:57.825Z"
+	
+	// declaro variables
+	private int id;
+	private String name;
+	private String brewery_type;
+	private String street;
+	private String city;
+	private String state;
+	private String postal_code;
+	private String country;
+	private String longitude;
+	private String latitude;
+	private int phone;
+	private String website_url;
+	private String updated_at;
+		
+	
+	public void datosclientes (int id,String name,String brewery_type,String street,String city,String state
+			,String postal_code,String country,String longitude,String latitude, int phone,String website_url, String updated_at) {
+		this.id = id;
+		this.name = name;
+		this.brewery_type = brewery_type;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.postal_code = postal_code;
+		this.country = country;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.phone = phone;
+		this.website_url = website_url;
+		this.updated_at = updated_at;		
+	}  
+	
+	//@Bean
+	//public RestTemplate restTemplate() {
+	//    return new RestTemplate();
+	//}
+	
+	//@Autowired
+	//private RestTemplate restTemplate;
+	
+	//String url = "https://api.openbrewerydb.org/breweries/";
+	//User [] response = restTemplate.getForObject(url, User[].class);
+	
+}

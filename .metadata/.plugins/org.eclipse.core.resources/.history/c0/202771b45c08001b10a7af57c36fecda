@@ -1,0 +1,51 @@
+package com.PageObject.pom;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import Funciones.Acciones;
+
+
+public class PantallaCatalogoFravega {
+	
+	WebDriver driver;
+	
+	//Localizador que indica que estoy en la segunda pantalla
+    By locaSegundaPantalla = By.xpath("//h1[@name='categoryTitle' and @class='TitleCategory__TitleCategoryStyled-sc-54msxn-0 fvCOsJ']");
+	
+    //Localizador que hace clic en la izquierda Heladeras(79)
+    By locaClickHeladeras = By.xpath("//ul/li[1]//h4[contains(text(),'Heladeras')]");
+    
+    //Declaro el constructor
+    public PantallaCatalogoFravega(WebDriver driver) {
+		this.driver = driver;
+	}
+        
+   	
+ //Metodo que valida si entró a la segunda pantalla
+  public void PageCatalogoAbierta() throws Exception {
+  		if (driver.findElement(locaSegundaPantalla).getText().equals("Heladeras")) {
+  			System.out.println("Se ingreso a la pagina Heladeras correctamente");
+  		} else {
+  			System.out.println("No se pudo ingresar a la pagina Heladeras");
+  		}
+  	}
+  
+	//metodo que hace clic en la opción Heladeras
+	public void ClickHeladera () throws Exception {
+		driver.findElement(locaClickHeladeras).click();
+	}
+    
+	
+    //metodo que valida si esta en la pantalla
+	//public void PageCatalogoAbierta() throws Exception {
+	//if (driver.findElement(locaSegundaPantalla).isDisplayed()){
+		
+		//va hacer clic en la opcion que se encuentra en la izquierda "Heladeras(79)"
+	//	driver.findElement(locaClickHeladeras).click();
+	//}
+	//else {
+	//	System.out.print("Página no encontrada clic en Heladeras");
+	//}		
+	//}
+}

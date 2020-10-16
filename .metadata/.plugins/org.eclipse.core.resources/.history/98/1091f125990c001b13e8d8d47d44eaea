@@ -1,0 +1,19 @@
+package com.InventarioCerveceria.InventarioCerveceria;
+
+import org.junit.jupiter.api.Test;
+//import org.springframework.boot.SpringApplication;
+import org.springframework.boot.test.context.SpringBootTest;
+
+//clase que realiza el testeo para ejecutar y pegarle al endpoint
+@SpringBootTest
+public class TestsInventario {
+
+	@Test
+	public void pegarEndpoint() {
+		System.setProperty("https.protocols", "TLSv1.2,TLSv1.1,SSLv3");
+		Cerveceria[] llama;
+		InvocarEndpoint llamaendpoint = new InvocarEndpoint();
+		llama = llamaendpoint.invocacionEndpoint();
+		System.out.println(llama);
+	}
+}

@@ -1,0 +1,87 @@
+package com.cervecerialan.encuestacerveceria;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Cerveceria {
+	
+	//"id": 2,
+    //"name": "Avondale Brewing Co",
+    //"brewery_type": "micro",
+    //"street": "201 41st St S",
+    //"city": "Birmingham",
+    //"state": "Alabama",
+    //"postal_code": "35222-1932",
+    //"country": "United States",
+    //"longitude": "-86.774322",
+    //"latitude": "33.524521",
+    //"phone": "2057775456",
+    //"website_url": "http://www.avondalebrewing.com",
+    //"updated_at": "2018-08-23T23:19:57.825Z"
+	
+	// declaro variables, lo que esta entre comillas es el valor que esta en Json que devuelve la url
+	
+	@JsonProperty("id") 
+	private int id;
+	
+	@JsonProperty("name")
+	private String name;
+	
+	@JsonProperty("brewery_type")
+	private String brewery_type;
+	
+	@JsonProperty("street")
+	private String street;
+	
+	@JsonProperty("city")
+	private String city;
+	
+	@JsonProperty("state")
+	private String state;
+	
+	@JsonProperty("postal_code")
+	private String postal_code;
+	
+	@JsonProperty("country")
+	private String country;
+	
+	@JsonProperty("longitude")
+	private String longitude;
+	
+	@JsonProperty("latitude")
+	private String latitude;
+	
+	@JsonProperty("phone")
+	private int phone;
+	
+	@JsonProperty("website_url")
+	private String website_url;
+	
+	@JsonProperty("updated_at")
+	private String updated_at;
+		
+	
+	public void datosclientes (int id,String name,String brewery_type,String street,String city,String state
+			,String postal_code,String country,String longitude,String latitude, int phone,String website_url, String updated_at) {
+		this.id = id;
+		this.name = name;
+		this.brewery_type = brewery_type;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.postal_code = postal_code;
+		this.country = country;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.phone = phone;
+		this.website_url = website_url;
+		this.updated_at = updated_at;	
+				
+	}  
+	
+	
+	
+	
+	
+	
+	
+}

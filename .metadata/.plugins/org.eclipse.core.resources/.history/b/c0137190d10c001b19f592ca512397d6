@@ -1,0 +1,9 @@
+package com.InventarioCerveceria.InventarioCerveceria;
+
+public class ClasePrueba {
+
+
+// Specify the base URL to the RESTful web service
+RestAssured.baseURI ="https://samples.openweathermap.org/data/2.5/";
+RequestSpecification request = RestAssured.given();
+}

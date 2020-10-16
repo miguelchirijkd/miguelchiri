@@ -1,0 +1,45 @@
+package com.InventarioCerveceria.InventarioCerveceria;
+
+import static org.testng.Assert.assertEquals;
+
+import org.springframework.util.Assert;
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.satatic.restassured.RestAssured.*;
+public class ClasePrueba {
+
+	
+		@Test
+	        public void queryParameter() {
+			RestAssured.given().queryParam("id","2028").when().
+			get("https://chercher.tech/sample/api/product/read").prettyPrint();
+			}
+			
+			/*
+			RestAssured.baseURI ="https://api.openbrewerydb.org/breweries"; 
+			RequestSpecification request = RestAssured.given();
+			
+			Response response = request.queryParam("query", "Birmingham").get("/breweries");
+			
+			String jsonString = response.asString();
+			System.out.println(response.getStatusCode()); 
+			assertEquals(jsonString.contains("Birmingham"), true);
+			*/
+			
+			/*
+			RestAssured.baseURI ="https://samples.openweathermap.org/data/2.5/"; 
+			RequestSpecification request = RestAssured.given();
+			
+			Response response = request.queryParam("q", "London,UK") 
+					                   .queryParam("appid", "2b1fd2d7f77ccf1b7de9b441571b39b8") 
+					                   .get("/weather");
+			
+			String jsonString = response.asString();
+			System.out.println(response.getStatusCode()); 
+			assertEquals(jsonString.contains("London"), true);
+			*/
+			
+		}
+	

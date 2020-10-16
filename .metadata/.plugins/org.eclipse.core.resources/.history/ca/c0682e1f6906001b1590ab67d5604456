@@ -1,0 +1,23 @@
+package com.cervecerialan.encuestacerveceria;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.client.RestTemplate;
+
+//Clase que invoca al servicio y devuelve los datos
+public class InvocarEndpoint {
+
+	@Autowired
+	private ApplicationContext appContext; 
+	private RestTemplate restTemplate;
+	
+	//Metodo que devuelve un objeto de tipo InvocarEndpoint
+	public Cerveceria[] invocacionEndpoint() {
+	String url = "https://api.openbrewerydb.org/breweries/";
+	//InvocarEndpoint[] response = restTemplate.getForObject(url, InvocarEndpoint[].class);
+	Cerveceria[] response = restTemplate.getForObject(url, Cerveceria[].class);	
+	return response;
+	
+	}
+}

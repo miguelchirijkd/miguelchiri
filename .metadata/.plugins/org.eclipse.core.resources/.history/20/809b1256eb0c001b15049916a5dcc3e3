@@ -1,0 +1,30 @@
+package com.InventarioCerveceria.InventarioCerveceria;
+
+import static org.testng.Assert.assertEquals;
+
+import org.springframework.util.Assert;
+import org.testng.annotations.Test;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import static io.restassured.RestAssured.*;
+
+public class ClasePrueba {
+
+	
+		@Test
+	        public void queryParameter() {
+			
+			
+			RestAssured.baseURI ="https://api.openbrewerydb.org/breweries"; 
+			RequestSpecification request = RestAssured.given();
+			
+			Response response = request.queryParam("query", "Birmingham").get("/breweries");
+			
+			String jsonString = response.asString();
+			System.out.println(response.getStatusCode()); 
+			assertEquals(jsonString.contains("Birmingham"), true);
+			
+		}			
+	}
+	
